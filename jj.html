@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            height: 100vh;
+        }
+
+        .text-slider-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 300px; /* Set the desired height */
+        }
+
+        .text-content {
+            font-size: 18px; /* Set the font size as needed */
+            font-family: Arial, sans-serif; /* Set the font family as needed */
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            color: #333;
+            transition: transform 0.5s ease; /* Add smooth transition for scrolling */
+            width: 600px;
+            margin-left: 50px;
+        }
+
+        .text-slide {
+            display: none;
+            margin: 0;
+        }
+
+        .custom-scrollbar-container {
+            width: 20px; /* Set the desired width */
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #eee; /* Set the background color as needed */
+        }
+
+        .custom-scrollbar {
+            flex: 1;
+            background-color: #ccc; /* Default color */
+            transition: background-color 0.3s;
+            cursor: pointer;
+            margin-bottom: 30px;
+            height: 30px;
+            width: 8px;
+            flex-shrink: 0;
+            border-radius: 22.044px;
+            border: 1.102px solid var(--STROKE-2, #05FA6F);
+            background: var(--FILL-1, linear-gradient(270deg, #05D75C 22.43%, rgba(0, 88, 37, 0.44) 106.91%));
+        }
+
+        .controls {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 10px;
+            z-index: 1; /* Ensure the controls are above the text content */
+        }
+
+        .toggle-icon {
+            cursor: pointer;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            background-color: #000; /* Set the background color as black */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff; /* Set the text color as white */
+            font-size: 24px; /* Set the font size as needed */
+            font-weight: bold; /* Set the font weight as needed */
+        }
+
+        .elp{
+           display: flex;
+           flex-direction: columne;
+        }
+    </style>
+</head>
+<body>
+    <div class="text-slider-container">
+      <div class="elp">
+        <div class="custom-scrollbar-container" id="scrollbarContainer">
+            <div class="custom-scrollbar" onclick="goToSlide(0)"></div>
+            <div class="custom-scrollbar" onclick="goToSlide(1)"></div>
+            <div class="custom-scrollbar" onclick="goToSlide(2)"></div>
+        </div>
+        <div class="controls">
+            <div class="toggle-icon" id="toggleIcon" onclick="togglePlayPause()">▶️</div>
+        </div>
+      </div>
+        
+        <div class="text-content" id="textContent">
+            <!-- Add your text content here -->
+            <div class="text-slide">Chat Wazobia AI, founded in [Year], embarked on a mission to revolutionize global communication by breaking down language barriers. Our journey began with a visionary team united by a shared belief in technology's potential to connect people worldwide. From our early days, we were dedicated to developing advanced AI translation, transcription, and chat services to simplify global communication.Based in Nigeria, Chat Wazobia AI is an innovative AI company committed to eliminating language barriers(Your Mother Tongue our fluent Languages). Our ground-breaking app translates between various languages and English, as well as multiple African languages, promoting effortless cross-cultural communication. We prioritize precision and cultural sensitivity, empowering users to connect, learn, and expand their horizons.Join us as we contribute to shaping a more interconnected world.</div>
+            <div class="text-slide">Slide 2: More Text</div>
+            <div class="text-slide">Slide 3: Additional Text</div>
+            <!-- Add more text slides as needed -->
+        </div>
+    </div>
+
+    <script>
+        var textContent = document.getElementById('textContent');
+        var scrollbarContainer = document.getElementById('scrollbarContainer');
+        var scrollBars = document.querySelectorAll('.custom-scrollbar');
+        var toggleIcon = document.getElementById('toggleIcon');
+        var isPaused = true;
+        var currentSlide = 0;
+        var interval;
+
+        // Display the first slide initially
+        showSlide(currentSlide);
+
+        function showSlide(slideIndex) {
+            var slides = document.getElementsByClassName('text-slide');
+            for (var i = 0; i < slides.length; i++) {
+                slides[i].style.display = 'none';
+            }
+            slides[slideIndex].style.display = 'block';
+
+            // Update scrollbar colors
+            scrollBars.forEach(function (bar, index) {
+                bar.style.backgroundColor = index === slideIndex ? '#333' : '#ccc';
+            });
+        }
+
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            showSlide(currentSlide);
+        }
+
+        function togglePlayPause() {
+            isPaused = !isPaused;
+            if (isPaused) {
+                clearInterval(interval);
+                toggleIcon.textContent = '▶️';
+            } else {
+                interval = setInterval(function () {
+                    if (currentSlide < scrollBars.length - 1) {
+                        currentSlide++;
+                    } else {
+                        currentSlide = 0;
+                    }
+                    showSlide(currentSlide);
+                }, 2000); // Change the interval as needed (currently set to 2 seconds)
+                toggleIcon.textContent = '⏸️';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgb(32, 30, 30);
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+li, a, button{
+    color: white;
+    text-decoration: none;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    width: 100%;
+}
+
+.logo{
+    cursor: pointer;
+}
+
+
+.nav__links{
+    list-style: none;
+    border-radius: 40.71px;
+    border: 0.768px solid #565656;
+    background: rgba(255, 255, 255, 0.13);
+    backdrop-filter: blur(14.594202995300293px);
+    display: flex;
+    padding: 6.5px 8px;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0.27rem;
+    align-items: flex-start;
+}
+
+.nav__links li{
+    list-style: none;
+    padding: 0.5rem 0.5rem;
+}
+
+.nav__links li a{
+    transition: all 0.3s ease 0s;
+}
+
+.nav__links li a:hover{
+    color: rgb(229, 248, 229);
+}
+
+button{
+    padding: 10px 30px;
+    background-color: white;
+    border:none;
+    border-radius: 50px;
+    cursor:pointer;
+    transition: all 0.3s ease 0s;
+    color: black;
+   padding: 1rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    gap: 0.5rem;
+}
+
+    
+button:hover{
+    background-color: rgb(200, 230, 200);
+}
+
+.hero{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 5rem 0 5rem;
+    overflow: hidden;
+    align-items: center;
+}
+
+.error{
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    gap:30px;
+    margin-top: 100px;
+    text-align: center;
+}
+
+.error_txt p{
+    color: #ADAAA7;
+    text-align: center;
+    font-family: Lufga;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 95.018%; /* 19.004px */
+}
+
+.error_txt h1{
+    color: #AEAEAE;
+    text-align: center;
+    font-family: Lufga;
+    font-size: 45.295px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 95.018%; /* 43.038px */
+}
+
+.error_txt{
+    display: flex;
+    height: 130px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
